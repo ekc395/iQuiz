@@ -39,7 +39,7 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <accessibility key="accessibilityConfiguration" identifier="QuizTopicCell"/>
+                                <accessibility key="accessibilityConfiguration" identifier="QuizCell"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -47,9 +47,19 @@
                             <outlet property="delegate" destination="OU6-tn-PA6" id="q8S-bd-fIM"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Root View Controller" id="T7q-PI-fmn"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="rVu-J6-NjP" id="5W3-uy-YUP"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cig-cE-WSd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <barButtonItem title="Settings" id="hbg-OF-RSe">
+                    <connections>
+                        <action selector="settingsTapped:" destination="OU6-tn-PA6" id="huO-5s-oS9"/>
+                    </connections>
+                </barButtonItem>
             </objects>
             <point key="canvasLocation" x="819" y="178"/>
         </scene>
@@ -62,7 +72,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="OU6-tn-PA6" kind="relationship" relationship="rootViewController" id="XB8-Qv-NMr"/>
+                        <segue destination="OU6-tn-PA6" kind="relationship" relationship="rootViewController" id="PIi-L4-3ft"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dd4-4J-Jyy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
