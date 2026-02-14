@@ -48,7 +48,13 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="T7q-PI-fmn"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="T7q-PI-fmn">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="Lkf-uZ-460">
+                            <connections>
+                                <action selector="settingsTapped:" destination="OU6-tn-PA6" id="UP4-ZL-YG3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="rVu-J6-NjP" id="5W3-uy-YUP"/>
