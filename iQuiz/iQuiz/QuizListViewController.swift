@@ -13,6 +13,7 @@ class QuizListViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("view did load")
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -25,8 +26,8 @@ class QuizListViewController: UIViewController, UITableViewDelegate, UITableView
 
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: "QuizCell", for: indexPath)
+        
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "QuizCell")
 
         let topic = QuizData.topics[indexPath.row]
 
