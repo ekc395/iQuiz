@@ -44,6 +44,11 @@ struct QuizData {
                     text: "Who is Iron Man?",
                     answers: ["Steve Rogers", "Tony Stark", "Bruce Banner"],
                     correctIndex: 1
+                ),
+                Question(
+                    text: "Who is Spider Man?",
+                    answers: ["Andrew Garfield", "Tom Holland", "Tobey Maguire", "All of them"],
+                    correctIndex: 3
                 )
             ]
         ),
@@ -57,6 +62,11 @@ struct QuizData {
                     text: "What planet is known as the Red Planet?",
                     answers: ["Earth", "Mars", "Venus"],
                     correctIndex: 1
+                ),
+                Question(
+                    text: "What planet is closest to the sun?",
+                    answers: ["Mercury", "Uranus", "Saturn"],
+                    correctIndex: 0
                 )
             ]
         )
