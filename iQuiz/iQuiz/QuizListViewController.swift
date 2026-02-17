@@ -24,8 +24,7 @@ class QuizListViewController: UIViewController, UITableViewDelegate, UITableView
         return QuizData.topics.count
     }
 
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "QuizCell")
 
@@ -36,6 +35,10 @@ class QuizListViewController: UIViewController, UITableViewDelegate, UITableView
         cell.imageView?.image = UIImage(named: topic.imageName)
 
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showQuestion", sender: self)
     }
     
     @IBAction func settingsTapped(_ sender: UIBarButtonItem) {
@@ -52,5 +55,13 @@ class QuizListViewController: UIViewController, UITableViewDelegate, UITableView
 
         present(alert, animated: true)
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showQuestion",
+           let indexPath = tableView.indexPathForSelectedRow {
+            QuizManager.currentTopic = indexPath.row
+            QuizManager.currentQuestion = 0
+            QuizManager.score = 0
+        }
+    }
 }
