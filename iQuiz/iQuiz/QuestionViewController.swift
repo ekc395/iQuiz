@@ -9,13 +9,15 @@ import UIKit
 
 class QuestionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet var questionLabel: UILabel!
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
 
     var selectedAnswerIndex: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
         loadQuestion()
     }
 
@@ -23,6 +25,7 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         let topic = QuizData.topics[QuizManager.currentTopic]
         let question = topic.questions[QuizManager.currentQuestion]
         questionLabel.text = question.text
+        tableView.reloadData()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,8 +34,11 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AnswerCell", for: indexPath)
-        let answers = QuizData.topics[QuizManager.currentTopic].questions[QuizManager.currentQuestion].answers
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "AnswerCell")
+        let answers =
+        QuizData.topics[QuizManager.currentTopic]
+            .questions[QuizManager.currentQuestion]
+            .answers
         cell.textLabel?.text = answers[indexPath.row]
         return cell
     }
@@ -42,6 +48,9 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     @IBAction func submitTapped(_ sender: UIButton) {
+        guard selectedAnswerIndex != nil else {
+            return
+        }
         performSegue(withIdentifier: "showAnswer", sender: nil)
     }
 }
