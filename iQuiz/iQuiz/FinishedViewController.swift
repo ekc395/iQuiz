@@ -9,21 +9,29 @@ import UIKit
 
 class FinishedViewController: UIViewController {
 
+    @IBOutlet var messageLabel: UILabel!
+    @IBOutlet var scoreLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let topic = QuizData.topics[QuizManager.currentTopic]
+        let total = topic.questions.count
+        let score = QuizManager.score
+
+        scoreLabel.text = "\(score) of \(total) correct"
+
+        if score == total {
+            messageLabel.text = "Perfect!"
+        } else if score >= total/2 {
+            messageLabel.text = "Almost!"
+        } else {
+            messageLabel.text = "Better luck next time!"
+        }
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func nextTapped(_ sender: UIButton) {
+        navigationController?
+            .popToRootViewController(animated: true)
     }
-    */
-
 }
