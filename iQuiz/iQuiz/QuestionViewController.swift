@@ -53,4 +53,11 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
         }
         performSegue(withIdentifier: "showAnswer", sender: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showAnswer",
+           let dest = segue.destination as? AnswerViewController {
+            dest.selectedAnswerIndex = selectedAnswerIndex
+        }
+    }
 }

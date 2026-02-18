@@ -9,21 +9,40 @@ import UIKit
 
 class AnswerViewController: UIViewController {
 
+    @IBOutlet var questionLabel: UILabel!
+    @IBOutlet var answerLabel: UILabel!
+    @IBOutlet var resultLabel: UILabel!
+    
+    var selectedAnswerIndex: Int?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let topic = QuizData.topics[QuizManager.currentTopic]
+        let question = topic.questions[QuizManager.currentQuestion]
+
+        questionLabel.text = question.text
+        answerLabel.text = question.answers[question.correctIndex]
+
+        if let selected = selectedAnswerIndex,
+           selected == question.correctIndex {
+            resultLabel.text = "Correct!"
+            QuizManager.score += 1
+        } else {
+            resultLabel.text = "Incorrect"
+        }
     }
-    
 
-    /*
-    // MARK: - Navigation
+    @IBAction func nextTapped(_ sender: UIButton) {
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        QuizManager.currentQuestion += 1
+
+        let topic = QuizData.topics[QuizManager.currentTopic]
+
+        if QuizManager.currentQuestion < topic.questions.count {
+            performSegue(withIdentifier: "nextQuestion", sender: nil)
+        } else {
+            performSegue(withIdentifier: "showFinished", sender: nil)
+        }
     }
-    */
-
 }
