@@ -22,21 +22,21 @@ class QuestionViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func loadQuestion() {
-        let topic = QuizData.topics[QuizManager.currentTopic]
+        let topic = NetworkManager.shared.topics[QuizManager.currentTopic]
         let question = topic.questions[QuizManager.currentQuestion]
         questionLabel.text = question.text
         tableView.reloadData()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let topic = QuizData.topics[QuizManager.currentTopic]
+        let topic = NetworkManager.shared.topics[QuizManager.currentTopic]
         return topic.questions[QuizManager.currentQuestion].answers.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "AnswerCell")
         let answers =
-        QuizData.topics[QuizManager.currentTopic]
+        NetworkManager.shared.topics[QuizManager.currentTopic]
             .questions[QuizManager.currentQuestion]
             .answers
         cell.textLabel?.text = answers[indexPath.row]

@@ -18,7 +18,7 @@ class AnswerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let topic = QuizData.topics[QuizManager.currentTopic]
+        let topic = NetworkManager.shared.topics[QuizManager.currentTopic]
         let question = topic.questions[QuizManager.currentQuestion]
 
         questionLabel.text = question.text
@@ -37,7 +37,7 @@ class AnswerViewController: UIViewController {
 
         QuizManager.currentQuestion += 1
 
-        let topic = QuizData.topics[QuizManager.currentTopic]
+        let topic = NetworkManager.shared.topics[QuizManager.currentTopic]
 
         if QuizManager.currentQuestion < topic.questions.count {
             performSegue(withIdentifier: "nextQuestion", sender: nil)

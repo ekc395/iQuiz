@@ -15,7 +15,7 @@ class FinishedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let topic = QuizData.topics[QuizManager.currentTopic]
+        let topic = NetworkManager.shared.topics[QuizManager.currentTopic]
         let total = topic.questions.count
         let score = QuizManager.score
 

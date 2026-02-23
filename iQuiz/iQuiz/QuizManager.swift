@@ -6,6 +6,9 @@
 //
 
 class QuizManager {
+    
+    static var topics: [QuizTopic] = []
+    
     static var currentTopic = 0
     static var currentQuestion = 0
     static var score = 0
