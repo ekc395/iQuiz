@@ -73,15 +73,8 @@ class QuizListViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     @IBAction func settingsTapped(_ sender: UIBarButtonItem) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let settingsVC = storyboard.instantiateViewController(
-                withIdentifier: "SettingsViewController"
-            )
-            settingsVC.modalPresentationStyle = .popover
-            if let popover = settingsVC.popoverPresentationController {
-                popover.barButtonItem = sender
-                popover.permittedArrowDirections = .any
-            }
-            present(settingsVC, animated: true)
+        if let url = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(url)
+        }
     }
 }

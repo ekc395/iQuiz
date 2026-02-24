@@ -16,11 +16,11 @@
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>
-			<string>Name</string>
+			<string>Quiz URL</string>
 			<key>Key</key>
-			<string>name_preference</string>
+			<string>quizURL</string>
 			<key>DefaultValue</key>
-			<string></string>
+			<string>http://tednewardsandbox.site44.com/questions.json</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>KeyboardType</key>
