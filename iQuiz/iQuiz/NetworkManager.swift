@@ -10,6 +10,12 @@ import UIKit
 class NetworkManager {
 
     static let shared = NetworkManager()
+    
+    private var localFileURL: URL {
+        let documents = FileManager.default.urls(for: .documentDirectory,
+                                                 in: .userDomainMask)[0]
+        return documents.appendingPathComponent("quizzes.json")
+    }
 
     private init() {}
 
@@ -33,6 +39,7 @@ class NetworkManager {
             do {
                 let decoded = try JSONDecoder().decode([QuizTopic].self, from: data)
                 self.topics = decoded
+                try? data.write(to: self.localFileURL)
                 DispatchQueue.main.async {
                     completion(true)
                 }
@@ -43,5 +50,19 @@ class NetworkManager {
                 }
             }
         }.resume()
+    }
+    
+    func loadLocalQuizzes() -> Bool {
+        guard let data = try? Data(contentsOf: localFileURL) else {
+            return false
+        }
+        do {
+            let decoded = try JSONDecoder().decode([QuizTopic].self, from: data)
+            topics = decoded
+            return true
+        } catch {
+            print("Local decode error:", error)
+            return false
+        }
     }
 }

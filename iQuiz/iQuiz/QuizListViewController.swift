@@ -27,7 +27,12 @@ class QuizListViewController: UIViewController, UITableViewDelegate, UITableView
             if success {
                 self.tableView.reloadData()
             } else {
-                self.showNetworkError()
+                let loadedLocal = NetworkManager.shared.loadLocalQuizzes()
+                if loadedLocal {
+                    self.tableView.reloadData()
+                } else {
+                    self.showNetworkError()
+                }
             }
         }
     }
