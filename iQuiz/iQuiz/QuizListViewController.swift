@@ -22,7 +22,8 @@ class QuizListViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func loadQuizzes() {
-        NetworkManager.shared.fetchQuizzes(from: defaultURL) { success in
+        let savedURL = UserDefaults.standard.string(forKey: "quizURL") ?? "http://tednewardsandbox.site44.com/questions.json"
+        NetworkManager.shared.fetchQuizzes(from: savedURL) { success in
             if success {
                 self.tableView.reloadData()
             } else {
@@ -67,12 +68,15 @@ class QuizListViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     @IBAction func settingsTapped(_ sender: UIBarButtonItem) {
-        let alert = UIAlertController(
-            title: "Settings",
-            message: "Settings will go here",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let settingsVC = storyboard.instantiateViewController(
+                withIdentifier: "SettingsViewController"
+            )
+            settingsVC.modalPresentationStyle = .popover
+            if let popover = settingsVC.popoverPresentationController {
+                popover.barButtonItem = sender
+                popover.permittedArrowDirections = .any
+            }
+            present(settingsVC, animated: true)
     }
 }
