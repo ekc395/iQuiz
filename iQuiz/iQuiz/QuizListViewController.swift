@@ -11,7 +11,7 @@ class QuizListViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet var tableView: UITableView!
 
-    let defaultURL = "http://tednewardsandbox.site44.com/questions.json"
+    let defaultURL = "https://raw.githubusercontent.com/ekc395/iQuiz/main/questions.json"
 
     override func viewDidLoad() {
         super.viewDidLoad()
